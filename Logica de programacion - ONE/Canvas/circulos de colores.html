@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circulos de colores</title>
+</head>
+<style>
+    .titulo {
+        color: cadetblue;
+        text-align: center;
+    }
+
+    .contenedor{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="titulo">
+        <h1>Círculos de colores</h1>
+        <h3>Para dibujar circulos en la pantalla gris, haz clic izquierdo.</h3>
+        <h3>Para cambiar el color del círculo, haz clic derecho.</h3>
+        <br>
+    </div>
+    <div class="contenedor">
+        <canvas width="600" height="400"></canvas>
+    </div>
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    var colorActual = 0;  
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0, 600, 400);
+    var color = ["blue", "red", "green"];
+
+    function muestraAlerta(evento){
+        //event.pageX muestra la posición en x | pantalla.offSetLeft es el margen que tiene el canvas respecto de la pantalla
+        var x = event.pageX - pantalla.offsetLeft; //variable que toma posición en pantalla del canvas
+        var y = event.pageY - pantalla.offsetTop; 
+        console.log(evento);
+        alert("La posición en pantalla es: " + x + ", " + y);
+    }
+
+    function dibujarCirculo(evento){
+        var x = event.pageX - pantalla.offsetLeft; 
+        var y = event.pageY - pantalla.offsetTop;
+        pincel.fillStyle = color[colorActual]; //indica el color que toma el círculo
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log( x + ", " + y);
+    }
+
+    function cambiarColor(){
+        colorActual++; // para cambiar la posicion del array color
+        if (colorActual >= color.length ){
+            colorActual = 0; //vuelve el color a azul
+        }
+        return false; //para salir de la función
+    }
+
+    pantalla.onclick = dibujarCirculo; //onclick capta el clic izquierdo 
+    pantalla.oncontextmenu = cambiarColor; //oncontextmenu capta el clic derecho 
+
+</script>
+</body>
+</html>

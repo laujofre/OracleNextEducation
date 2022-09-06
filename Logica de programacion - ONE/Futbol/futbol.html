@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadística de tu equipo</title>
+</head>
+<body> 
+    <h1>Descubre las estadísticas de tu equipo</h1>
+    <script>
+        function saltoLinea(){
+            document.write("<br>");
+            document.write("<br>");
+            document.write("<br>");
+        }
+        function estadistica(){
+            var ganado = parseInt(prompt("Ingresa la cantidad de partidos ganados: "));
+            var empate = parseInt(prompt("Ingresa la cantidad de partidos empatados: "));
+
+            estadoEquipo = (ganado * 3) + empate;
+
+            document.write("Tu equipo tiene " + estadoEquipo + " puntos.");
+            saltoLinea();
+
+            var anterior = 28;
+
+            if (estadoEquipo > anterior ){
+                document.write("¡Tu equipo tiene más puntos que el año pasado!")
+            }
+            else if (estadoEquipo < anterior ){
+                document.write("Tu equipo tiene menos puntos que el año pasado.")
+            }
+            else {
+                document.write("Tu equipo tiene los mismos puntos que el año pasado")
+            }          
+        }
+        estadistica();
+    </script>   
+</body>
+</html>

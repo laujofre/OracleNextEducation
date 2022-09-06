@@ -1,0 +1,75 @@
+<!--Objetivo del juego: Tenemos un blanco en el centro de la pantalla y debemos apuntar con el mouse.
+    Pasos:
+    1° Crear el objetivo centran con 2 colores y radios
+    2° Hacerlo pararecer en diferentes lugares de la pantalla
+    3° Crear función que detecte el disparo y muestre un alert cuando acierte
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tiro al blanco</h1>
+    <canvas width="600" height="400"></canvas>
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    var x = 0;
+    var radio = 10;
+    var xAleatorio;
+    var yAleatorio;
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0,0,600,400);
+
+    function disenarCircunferencia (x,y,radio, color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0,0,600,400);
+    }
+
+    function disenarObjetivo(x,y){
+        disenarCircunferencia (x,y,radio+20,"orange");
+        disenarCircunferencia (x,y,radio+10,"white");
+        disenarCircunferencia (x,y,radio,"orange");
+    }
+    //funcion que nos da un número al azar
+    function posicionAleatoria(maximo){
+        return Math.floor(Math.random()*maximo);
+    }
+
+    function actualizarPantalla(){
+        limpiarPantalla();
+        xAleatorio = posicionAleatoria(600);
+        yAleatorio = posicionAleatoria(400);
+        disenarObjetivo(xAleatorio, yAleatorio);
+        x++;
+    }
+    
+    function disparar(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if ((x < xAleatorio + radio) &&
+            (x < xAleatorio - radio) &&
+            (y < yAleatorio + radio) &&
+            (y < yAleatorio - radio)) {
+                alert("Tiro certero");
+            }   
+    }
+
+    setInterval(actualizarPantalla,2000);
+    pantalla.onclick = disparar;
+
+</script>
+</body>
+</html>

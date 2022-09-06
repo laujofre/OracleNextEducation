@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+</head>
+<body>
+    <h1>Descubra su IMC</h1> 
+    
+    <script>
+        function imc(){
+        var nombre = prompt ("¿Cuál es su nombre?");
+        var peso = prompt (nombre + ", ingrese su peso: ");
+        var altura = prompt (nombre + ", ingrese su altura: ");
+
+        var total_imc = Math.round(peso / (altura * altura));
+
+        document.write(nombre + ", el total de su IMC es: " + total_imc)
+        document.write("<br>");
+        document.write("<br>");
+
+
+            if (total_imc <= 18){
+                document.write("Usted está bajo de peso.")
+            }
+            else if (total_imc >= 25){
+                document.write("Usted tiene sobrepeso.")
+            }
+            else {
+                document.write("Su peso es óptimo.")
+            }
+        
+        }
+        imc();
+    </script>
+</body>
+</html>

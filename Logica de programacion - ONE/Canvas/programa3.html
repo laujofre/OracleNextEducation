@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0, 600, 400);
+
+    function muestraAlerta(evento){
+        //event.pageX muestra la posición en x | pantalla.offSetLeft es el margen que tiene el canvas respecto de la pantalla
+        var x = event.pageX - pantalla.offsetLeft; //variable que toma posición en pantalla del canvas
+        var y = event.pageY - pantalla.offsetTop; 
+        console.log(evento);
+        alert("La posición en pantalla es: " + x + ", " + y);
+    }
+
+    function dibujarCirculo(evento){
+        var x = event.pageX - pantalla.offsetLeft; 
+        var y = event.pageY - pantalla.offsetTop;
+
+        pincel.fillStyle = "yellow";
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log( x + ", " + y);
+    }
+
+    pantalla.onclick = dibujarCirculo; 
+
+</script>
+</body>
+</html>

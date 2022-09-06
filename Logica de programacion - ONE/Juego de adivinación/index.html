@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el número</title>
+</head>
+<body>
+    <h1>Adivina el número que estoy pensando...</h1>
+    <script>
+        function saltoLinea(){
+            document.write("<br>");
+        }
+
+        function adivinaNumero(){
+            var numberPc = Math.floor(Math.random() *  2)
+            var intentos = 3;
+
+            while (intentos != 0){
+                var numberUser = parseInt(prompt("Elige un número entre 0 y 10: "));
+
+                if (numberPc == numberUser){
+                    intentos = 0;
+                }
+                else {
+                    intentos--;
+                    if ( intentos > 1){
+                        alert("No adivinaste, te quedan " + intentos + " intentos.");
+                    }
+                    else if ( intentos == 0){
+                        alert("No te quedan intentos.");
+                    }
+                    else{
+                        alert("No adivinaste, te queda " + intentos + " intento.");
+                    }
+                }
+            }
+            if(numberPc == numberUser){
+                alert("¡Adivinaste el número! Es " + numberPc );
+            }
+            else{
+                alert("El número que pensé era el " + numberPc);
+            }
+            document.write("Gracias por utilizar el programa.")
+        }
+        adivinaNumero();
+    </script>
+</body>
+</html>

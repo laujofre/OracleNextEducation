@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego secreto</title>
+</head>
+<body>
+    <h1>Adivina el número secreto</h1>
+    <br>
+    <input type="text">
+    <button>Verifique si acertó el secreto</button>
+    
+    <script>
+        function aleatorio(){
+            return Math.round(Math.random()*10);
+        }
+
+        function sortearNumero(cantidad){
+            var secreto = [];
+            var contador = 1;
+
+            while ( contador <= cantidad ){
+                var numeroAleatorio = aleatorio();
+                console.log(numeroAleatorio);
+                var encontrado = false;
+
+                if (numeroAleatorio != 0){
+                    //encuentra elementos repetidos
+                    for ( var posicion = 0; posicion < secreto.length; posicion++){
+                        if ( numeroAleatorio == secreto[posicion]){
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if ( encontrado == false ) {
+                        secreto.push(numeroAleatorio);
+                        contador++;
+                    }
+                }
+            }
+            return secreto;
+        }
+
+        var secreto = sortearNumero(4);
+        console.log(secreto);
+
+        var input = document.querySelector("input");
+        input.focus();
+        
+        function verificar(){
+            var encontrado = false;
+            for (var posicion = 0; posicion < secreto.length; posicion++){
+                if (parseInt(input.value) == secreto[posicion]){
+                    alert("Usted acertó.")
+                    encontrado = true;
+                    break;
+                }
+            }
+            if ( encontrado == false){
+                alert("Usted no acertó.")
+            }
+            input.value = ""; //borra el campo input
+            input.focus(); //deja el cursor en input siempre
+        }
+
+        var button = document.querySelector("button");
+        button.onclick = verificar; //la función se llamará cuando haga click en el botón
+    </script>
+    
+</body>
+</html>

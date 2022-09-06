@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var pantalla = document.querySelector('canvas');
+        var pincel = pantalla.getContext('2d');
+        var puedoDibujar = false;
+        var color = ["red", "green", "blue"];
+
+        pincel.fillStyle = 'grey';
+        pincel.fillRect(0, 0, 600, 400);
+
+        function dibujarCuadrados(n,color){
+            var distancia = 50;
+            var color = ["red", "green", "blue"];
+
+            for(i=0; i<n; i++ ){
+                var distancia = 50;
+                distancia *= i;
+
+                pincel.fillStyle = color[i];
+                pincel.fillRect(distancia,0,50,50);
+            }
+        }
+    
+        function dibujarCirculo(evento) {
+            if(puedoDibujar) {
+                var x = evento.pageX - pantalla.offsetLeft;
+                var y = evento.pageY - pantalla.offsetTop;
+                pincel.fillStyle = 'blue';
+                pincel.beginPath();
+                pincel.arc(x, y, 5, 0, 2 * 3.14);
+                pincel.fill();
+            }
+        }
+
+        function habilitarDibujar() {
+            puedoDibujar = true;
+        }
+
+        function deshabilitarDibujar() {
+            puedoDibujar = false;
+        }
+
+        function elegirColor(x,y,color){
+            var x = event.pageX - pantalla.offsetLeft; 
+            var y = event.pageY - pantalla.offsetTop;
+        
+            pincel.fillStyle = color[colorActual];
+            pincel.beginPath();
+            pincel.arc(x,y,10,0,2*3.14);
+            pincel.fill();
+            console.log( x + ", " + y);
+            cambiarColor();
+
+        }
+
+        function cambiarColor(){
+            colorActual++; // para cambiar la posicion del array color
+            if (colorActual >= color.length ){
+                colorActual = 0; //vuelve el color a azul
+            }
+            return false; //para salir de la función
+        }
+    
+
+        dibujarCuadrados(3);
+        pantalla.onmousemove = dibujarCirculo;
+        pantalla.onmousedown = habilitarDibujar;
+        pantalla.onmouseup = deshabilitarDibujar;
+        pantalla.onclick = elegirColor;
+
+
+    </script>
+    
+</body>
+</html>
