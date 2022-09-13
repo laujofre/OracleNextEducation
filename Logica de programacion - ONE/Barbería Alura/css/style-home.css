@@ -1,0 +1,79 @@
+.titulo-principal {
+    padding-left: 30px;
+}
+
+#banner {
+    width: 100%;
+}
+
+.principal{
+    background: #CCCCCC;
+    padding: 20px;
+}
+
+.tituloEnCentro{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+#mision{
+    font-size: 20px;
+}
+
+em strong{
+    color:red;
+}
+
+.diferenciales{
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+.items{
+    font-style: italic;
+}
+
+.items-diferenciales{
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    margin-right: 15%;
+}
+
+.imagenDiferenciales{
+    width: 50%;
+}
+
+/* Productos*/
+.encabezado {
+    background-color: #BBBBBB;
+    padding: 20px 0;
+}
+
+.caja {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+
+}
+nav{
+    position: absolute;
+    top: 125px;
+    right: 0;
+}
+
+nav li{
+    display: inline;
+    margin: 0 0 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #000000;
+    font-weight: bold;
+}
